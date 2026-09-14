@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RSVP_Project.AddEvent"
+             Title="AddEvent">
+    <VerticalStackLayout>
+        <Label 
+            Text="Add Event"
+            FontSize="28" 
+            HorizontalOptions="Center" />
+        <Entry
+            x:Name="EventName"
+            Placeholder="Event Name"/>
+        <Entry
+            x:Name="DateInput"
+            Placeholder="Enter your password"
+            IsPassword="True"/>
+        <Entry
+            x:Name="NameInput"
+            Placeholder="Date"/>
+        <Entry
+            x:Name="TimeInput"
+            Placeholder="Time"/>
+        <Entry
+            x:Name="LocationInput"
+            Placeholder="Location"/>
+        <Button
+            Text="Add Event"
+            Clicked="OnAddEventClicked" />
+        <Button
+            Text="Cancel"
+            Clicked="OnCancelClicked" />
+        <Label
+            x:Name="Message"
+            Text=""
+            TextColor="Purple" />
+    </VerticalStackLayout>
+</ContentPage>
