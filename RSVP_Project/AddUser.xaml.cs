@@ -1,3 +1,5 @@
+using RSVP_Project.Models;
+using RSVP_Project.Database;
 namespace RSVP_Project;
 
 public partial class AddUser : ContentPage
@@ -21,8 +23,17 @@ public partial class AddUser : ContentPage
 
 		else
 		{
-			Message.Text = "Account Created Successfully";
-		}
+			Database database = new Database();
+			User user = new User();
+            user.Name = NameInput.Text;
+			user.Email = EmailInput.Text;
+			user.Username = UsernameInput.Text;
+			user.Password = PasswordInput.Text;
+
+			database.AddUser(user);
+
+			Message.Text = "User added Successfully";
+        }
     }
 	private void OnCancelClicked(object? sender, EventArgs e)
 	{

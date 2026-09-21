@@ -1,4 +1,7 @@
-﻿namespace RSVP_Project
+﻿using RSVP_Project.Models;
+using RSVP_Project.Database;
+
+namespace RSVP_Project
 {
     public partial class MainPage : ContentPage
     {
@@ -10,7 +13,10 @@
 
         private async void OnLoginClicked(object? sender, EventArgs e)
         {
-            if(UsernameInput.Text == "User1" && PasswordInput.Text == "Password1")
+            Database database = new Database();
+            User user = database.GetUser(UsernameInput.Text, PasswordInput.Text);
+
+            if (user != null)
             {
                 Message.Text = "Login Successful";
                 await Navigation.PushAsync(new Events());
@@ -27,7 +33,6 @@
         }
         private async void OnCreateClicked(object? sender, EventArgs e)
         {
-            Message.Text = "Create Account Page Loading";
             await Navigation.PushAsync(new AddUser());
         }
     }
