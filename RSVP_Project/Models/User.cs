@@ -11,10 +11,9 @@ namespace RSVP_Project.Models
     {
         [PrimaryKey, AutoIncrement]
         public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-
+        public string Name { get; set; } = string.Empty; // Initialize to avoid null
+        public string Email { get; set; } = string.Empty; // Initialize to avoid null
+        public string Username { get; set; } = string.Empty; // Initialize to avoid null
+        public string Password { get; set; } = string.Empty; // Initialize to avoid null
     }
 }

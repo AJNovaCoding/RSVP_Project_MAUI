@@ -14,9 +14,8 @@ namespace RSVP_Project.Models
         public int EventId { get; set; }
         public int UserId { get; set; }
         public int HostUserId { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public string Name { get; set; } = string.Empty; // Default value added
+        public string Email { get; set; } = string.Empty; // Default value added to fix CS8618
         public int NumberOfGuests { get; set; }
-
     }
 }

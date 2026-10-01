@@ -1,30 +1,46 @@
-﻿using RSVP_Project.Models;
-using RSVP_Project.Database;
+﻿using System.Net.Http.Headers;
+using System.Text;
 
 namespace RSVP_Project
 {
     public partial class MainPage : ContentPage
     {
-
         public MainPage()
         {
             InitializeComponent();
         }
-
         private async void OnLoginClicked(object? sender, EventArgs e)
         {
-            Database database = new Database();
-            User user = database.GetUser(UsernameInput.Text, PasswordInput.Text);
+            string username = UsernameInput.Text;
+            string password = PasswordInput.Text;
 
-            if (user != null)
+            string credentials = $"{username}:{password}";
+            string encodedCredentials = Convert.ToBase64String(Encoding.UTF8.GetBytes(credentials));
+
+            using HttpClient client = new HttpClient();
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", encodedCredentials);
+
+            try
             {
-                Message.Text = "Login Successful";
-                await Navigation.PushAsync(new Events());
+                HttpResponseMessage response = await client.GetAsync("http://localhost:5240/api/Auth/login");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Message.Text = "Login Successful";
+                    await Navigation.PushAsync(new Events());
+                }
+                else
+                {
+                    Message.Text = "Invalid Username or Password, Please try again";
+                }
             }
-            else
+
+            catch(Exception)
             {
-                Message.Text = "Invalid Username or Password, Please try again";
+                Message.Text = "Unable to connect to Login Service";
             }
+
         }
         private async void OnGuestClicked(object? sender, EventArgs e)
         {

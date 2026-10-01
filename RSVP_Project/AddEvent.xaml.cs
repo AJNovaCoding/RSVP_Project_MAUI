@@ -30,7 +30,7 @@ public partial class AddEvent : ContentPage
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "rsvp.db");
 
             //Save to Database
-            Database database = new Database(dbPath); // Updated to use the correct class
+            RSVP_Project.Database.Database database = new RSVP_Project.Database.Database(dbPath); // Updated to use the correct class
             EventItem newEvent = new EventItem();
 
             newEvent.EventName = eventName;

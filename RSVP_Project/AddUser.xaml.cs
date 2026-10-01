@@ -23,8 +23,11 @@ public partial class AddUser : ContentPage
 
 		else
 		{
-			Database database = new Database();
-			User user = new User();
+			string dbPath = Path.Combine(FileSystem.AppDataDirectory, "rsvp.db");
+            RSVP_Project.Database.Database database = new RSVP_Project.Database.Database(dbPath);
+
+            //New user object
+            User user = new User();
             user.Name = NameInput.Text;
 			user.Email = EmailInput.Text;
 			user.Username = UsernameInput.Text;

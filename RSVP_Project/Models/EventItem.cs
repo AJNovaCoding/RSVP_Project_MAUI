@@ -11,12 +11,11 @@ namespace RSVP_Project.Models
     {
         [PrimaryKey, AutoIncrement]
         public int EventId { get; set; }
-        public string EventName { get; set; }
-        public string Date { get; set; }
-        public string Time { get; set; }
-        public string Location { get; set; }
+        public string EventName { get; set; } = string.Empty; // Default value added
+        public string Date { get; set; } = string.Empty; // Default value added
+        public string Time { get; set; } = string.Empty; // Default value added
+        public string Location { get; set; } = string.Empty; // Default value added
         public int HostUserId { get; set; }
-        public string  Description { get; set; }
-
+        public string Description { get; set; } = string.Empty; // Default value added
     }
 }
