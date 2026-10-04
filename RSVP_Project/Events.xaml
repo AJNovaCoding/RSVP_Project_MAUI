@@ -5,29 +5,17 @@
              Title="Events">
     <VerticalStackLayout>
         <Label 
-            Text="Events" 
-            HorizontalOptions="Center" />
-        <Label 
             Text="All Events" 
             HorizontalOptions="Center" />
-        <Button
-            Text="Birthday Dinner"
-            Clicked="OnBirthdayClicked"/>
-        <Button
-            Text="Wedding"
-            Clicked="OnWeddingClicked"/>
+        <VerticalStackLayout
+        x:Name="AllEventsLayout"
+        Spacing="5"></VerticalStackLayout>
         <Label
             Text="Hosting Event"
             FontSize="20"/>
-        <Button
-            Text="Birthday Dinner"
-            Clicked="OnBirthdayClicked"/>
         <Label
             Text="Attending Event"
             FontSize="20"/>
-        <Button
-            Text="Wedding"
-            Clicked="OnWeddingClicked"/>
         <Label
             Text="Event Details"
             FontSize="20"/>

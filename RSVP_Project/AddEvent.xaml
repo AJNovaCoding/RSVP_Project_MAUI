@@ -9,18 +9,17 @@
             FontSize="28" 
             HorizontalOptions="Center" />
         <Entry
+            x:Name="HostNameInput"
+            Placeholder="Host Name"/>
+        <Entry
             x:Name="EventName"
             Placeholder="Event Name"/>
         <Entry
             x:Name="DateInput"
-            Placeholder="Enter your password"
-            IsPassword="True"/>
-        <Entry
-            x:Name="NameInput"
             Placeholder="Date"/>
         <Entry
             x:Name="TimeInput"
-            Placeholder="Time"/>
+            Placeholder="Event Time (7:00pm)"/>
         <Entry
             x:Name="LocationInput"
             Placeholder="Location"/>

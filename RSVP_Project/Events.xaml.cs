@@ -1,3 +1,4 @@
+using RSVP_Project.Models;
 namespace RSVP_Project;
 
 public partial class Events : ContentPage
@@ -6,6 +7,50 @@ public partial class Events : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing(); // Load events from the database and display them in the UI
+        LoadEvents();
+    }
+
+    private void LoadEvents() 
+    {
+        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "rsvp.db");
+
+        RSVP_Project.Database.Database database = new RSVP_Project.Database.Database(dbPath);
+
+        var events = database.GetEvents();
+
+        AllEventsLayout.Children.Clear();
+
+        foreach (var eventItem in events)
+        {
+            var eventButton = new Button
+            {
+                Text = eventItem.EventName,
+                CommandParameter = eventItem.EventId 
+            };
+            eventButton.Clicked += OnEventClicked;
+            AllEventsLayout.Children.Add(eventButton);
+        }
+    }
+
+    private void OnEventClicked(object? sender, EventArgs e)
+    {
+        if (sender is not Button button) return;
+        int eventId = (int)button.CommandParameter;
+        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "rsvp.db");
+        RSVP_Project.Database.Database database = new RSVP_Project.Database.Database(dbPath);
+        var selectedEvent = database.GetEvents().FirstOrDefault(ev => ev.EventId == eventId);
+        if (selectedEvent != null)
+        {
+            EventDetails.Text =
+                $"{selectedEvent.EventName}\n" +
+                $"{selectedEvent.Date} at {selectedEvent.Time}\n" +
+                $"Location: {selectedEvent.Location}\n";
+        }
+    }
 
     private void OnBirthdayClicked(object sender, EventArgs e)
     {
@@ -26,6 +71,7 @@ public partial class Events : ContentPage
     }
     private async void OnAddEventClicked(object sender, EventArgs e)
     {
+
         await Navigation.PushAsync(new AddEvent());
     }
     private async void OnRSVPClicked(object sender, EventArgs e)
